@@ -17,14 +17,14 @@
         {
             "id": "1",
             "name": "Laptop",
-            "id_category": "2",
+            "id_category": "3",
             "price": "5000",
             "qty": "2"
         },
         {
             "id": "2",
             "name": "Phone",
-            "id_category": "3",
+            "id_category": "2",
             "price": "2000",
             "qty": "12"
         },

@@ -1,10 +1,8 @@
 <?php
 
+namespace App;
 
-namespace app;
-
-
-use src\Item;
+use Src\Item;
 
 class Create
 {
@@ -15,8 +13,9 @@ class Create
     public $qty;
 
 
-    public function __construct($paramsConcole = null){
-        if($paramsConcole && count($paramsConcole) == 5){
+    public function __construct($paramsConcole = null)
+    {
+        if ($paramsConcole && count($paramsConcole) == 5) {
             $this->name = $paramsConcole[1];
             $this->id_category = $paramsConcole[2];
             $this->price = $paramsConcole[3];
@@ -26,7 +25,7 @@ class Create
             $this->setId($allItem);
             $allItem[] =  $this;
             echo $item->updateItemForDatabace($allItem) ? "SUCCESSFUL \n" : "ERROR \n";
-        }else{
+        } else {
             echo " |--------------------------------|\n";
             echo " |  Error: no parameters          |\n ";
             echo "|  first argument - name         |\n ";
@@ -37,10 +36,11 @@ class Create
         }
     }
 
-    public function setId(array $array){
+    public function setId(array $array)
+    {
         $maxId = 0;
         foreach ($array as $item) {
-            if($item->id > $maxId){
+            if ($item->id > $maxId) {
                 $maxId = $item->id;
             }
         }
@@ -48,3 +48,10 @@ class Create
     }
 }
 
+require __DIR__ . '/../vendor/autoload.php';
+
+if ($argv) {
+    $paramsConcole = $argv;
+}
+
+new Create($paramsConcole);

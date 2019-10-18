@@ -1,12 +1,12 @@
 <?php
 
 
-namespace src;
-
+namespace Src;
 
 class Category extends Main
 {
-    public function getCategory(){
+    public function getCategory()
+    {
         $stringJson = $this->getDatabase();
         $json = json_decode($stringJson);
         return $json->category;

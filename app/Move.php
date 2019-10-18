@@ -1,30 +1,30 @@
 <?php
 
+namespace App;
 
-namespace app;
-
-use src\Category;
-use src\Item;
+use Src\Category;
+use Src\Item;
 
 class Move
 {
     public $id;
     public $id_category;
-    public function __construct(array $paramsConcole = null){
-        if($paramsConcole && count($paramsConcole) == 3){
+    public function __construct(array $paramsConcole = null)
+    {
+        if ($paramsConcole && count($paramsConcole) == 3) {
             $this->id = $paramsConcole[1];
             $this->id_category = strval($paramsConcole[2]);
             $item = new Item();
             $allItem = $item->getItem();
             foreach ($allItem as $it) {
-                if($this->id == $it->id){
+                if ($this->id == $it->id) {
                     $it->id_category = $this->id_category;
                     break;
                 }
             }
             $item->updateItemForDatabace($allItem);
             $this->viewItem();
-        }else{
+        } else {
             echo " |--------------------------------|\n";
             echo " |  Error: no parameters          |\n ";
             echo "|  first argument - id item      |\n ";
@@ -33,15 +33,16 @@ class Move
         }
     }
 
-    public function viewItem(){
+    public function viewItem()
+    {
         $category = new Category();
         $item = new Item();
         $allItem = $item->getItem();
         $allCategory = $category->getCategory();
-        foreach ($allCategory as $cat){
+        foreach ($allCategory as $cat) {
             echo "\n Category name: $cat->name \n ";
-            foreach ($allItem as $it){
-                if($cat->id == $it->id_category){
+            foreach ($allItem as $it) {
+                if ($cat->id == $it->id_category) {
                     echo "\n    | Id: $it->id \n";
                     echo "\n    | Name: $it->name \n";
                     echo "\n    | Price: $it->price \n";
@@ -52,5 +53,12 @@ class Move
             echo "\n ------------------------------------- \n";
         }
     }
-
 }
+
+require __DIR__ . '/../vendor/autoload.php';
+
+if ($argv) {
+    $paramsConcole = $argv;
+}
+
+new Move($paramsConcole);
