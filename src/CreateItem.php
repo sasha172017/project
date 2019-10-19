@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
 
-use Src\Item;
+namespace Src;
 
-class Create
+
+class CreateItem
 {
     public $id;
     public $name;
@@ -47,11 +47,3 @@ class Create
         $this->id = strval($maxId + 1);
     }
 }
-
-require __DIR__ . '/../vendor/autoload.php';
-
-if ($argv) {
-    $paramsConcole = $argv;
-}
-
-new Create($paramsConcole);
