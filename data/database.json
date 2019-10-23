@@ -17,7 +17,7 @@
         {
             "id": "1",
             "name": "Laptop",
-            "id_category": "3",
+            "id_category": 1,
             "price": "5000",
             "qty": "2"
         },
@@ -31,14 +31,14 @@
         {
             "id": "3",
             "name": "Laptop",
-            "id_category": "1",
+            "id_category": 3,
             "price": "5000",
             "qty": "2"
         },
         {
             "id": "4",
             "name": "PC",
-            "id_category": "1",
+            "id_category": 3,
             "price": "20000",
             "qty": "51"
         },
@@ -90,6 +90,20 @@
             "id_category": "1",
             "price": "415",
             "qty": "12"
+        },
+        {
+            "id": 12,
+            "name": "mouse",
+            "id_category": 1,
+            "price": 22.4,
+            "qty": 12
+        },
+        {
+            "id": 13,
+            "name": "mouse",
+            "id_category": 3,
+            "price": 200,
+            "qty": 12
         }
     ]
 }
