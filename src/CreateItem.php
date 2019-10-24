@@ -1,49 +1,36 @@
 <?php
 
 
-namespace Src;
+namespace App;
 
 
 class CreateItem
 {
-    public $id;
-    public $name;
-    public $id_category;
-    public $price;
-    public $qty;
+    public $allCategory;
+    public $allItem;
+    public static $error = false;
 
-
-    public function __construct($paramsConcole = null)
+    public function __construct($params = null)
     {
-        if ($paramsConcole && count($paramsConcole) == 5) {
-            $this->name = $paramsConcole[1];
-            $this->id_category = $paramsConcole[2];
-            $this->price = $paramsConcole[3];
-            $this->qty = $paramsConcole[4];
-            $item = new Item();
-            $allItem = $item->getItem();
-            $this->setId($allItem);
-            $allItem[] =  $this;
-            echo $item->updateItemForDatabace($allItem) ? "SUCCESSFUL \n" : "ERROR \n";
+        $item = new Item();
+        $category = new Category();
+        $this->allCategory = $category->getCategory();
+        $this->allItem = $item->getItem();
+        if ($params['name'] && $params['id_category'] && $params['price'] && $params['qty']) {
+            $item->name = $params['name'];
+            $item->id_category = $params['id_category'];
+            $item->price = $params['price'];
+            $item->qty = $params['qty'];
+            $item->setId($this->allItem);
+            $this->allItem[] = $item;
+            Database::updateItemForDatabace($this->allItem);
         } else {
-            echo " |--------------------------------|\n";
-            echo " |  Error: no parameters          |\n ";
-            echo "|  first argument - name         |\n ";
-            echo "|  second argument - id category |\n ";
-            echo "|  third argument - price        |\n ";
-            echo "|  fourth argument - quantity    |\n ";
-            echo "|--------------------------------|\n";
+            self::$error = true;
         }
+        Page::render('create', [
+            'allItem' => $this->allItem,
+            'allCategory' => $this->allCategory
+        ]);
     }
 
-    public function setId(array $array)
-    {
-        $maxId = 0;
-        foreach ($array as $item) {
-            if ($item->id > $maxId) {
-                $maxId = $item->id;
-            }
-        }
-        $this->id = strval($maxId + 1);
-    }
 }

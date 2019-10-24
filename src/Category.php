@@ -1,14 +1,13 @@
 <?php
 
 
-namespace Src;
+namespace App;
 
-class Category extends Main
+class Category
 {
     public function getCategory()
     {
-        $stringJson = $this->getDatabase();
-        $json = json_decode($stringJson);
-        return $json->category;
+        $category = Database::getDatabase();
+        return $category->category;
     }
 }
