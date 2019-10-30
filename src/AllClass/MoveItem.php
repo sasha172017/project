@@ -1,11 +1,15 @@
 <?php
 
 
-namespace App;
+namespace AllClass;
 
+
+use Model\Database;
 
 class MoveItem
 {
+    public $allCategory;
+    public $allItem;
     public static $error = false;
 
     public function __construct(array $params = null)
@@ -22,13 +26,10 @@ class MoveItem
                 }
             }
             Database::updateItemForDatabace($allItem);
-            $newAllItem = $item->getItem();
+            $this->allCategory = $allCategory;
+            $this->allItem = $item->getItem();
         } else {
             self::$error = true;
         }
-        Page::render('move', [
-            'allItem' => $newAllItem,
-            'allCategory' => $allCategory
-        ]);
     }
 }

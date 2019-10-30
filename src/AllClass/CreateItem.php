@@ -1,8 +1,10 @@
 <?php
 
 
-namespace App;
+namespace AllClass;
 
+
+use Model\Database;
 
 class CreateItem
 {
@@ -27,10 +29,6 @@ class CreateItem
         } else {
             self::$error = true;
         }
-        Page::render('create', [
-            'allItem' => $this->allItem,
-            'allCategory' => $this->allCategory
-        ]);
     }
 
 }

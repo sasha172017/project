@@ -5,7 +5,7 @@
     <title>Move</title>
 </head>
 <body>
-<?php if(!\App\MoveItem::$error): ?>
+<?php if(!\AllClass\MoveItem::$error): ?>
 <table border="1">
     <tr><td><b>ID</b></td><td><b>Name</b></td><td><b>Category</b></td><td><b>Price</b></td><td><b>Qty</b></td></tr>
     <?php foreach ($allCategory as $cat): ?>
@@ -20,7 +20,7 @@
     <?php endforeach; ?>
     <table>
         <?php else: ?>
-            <h3>Error - no GET parameters: id, id category</h3>
+            <h3>Error - no parameters: id, id category</h3>
         <?php endif ?>
 </body>
 </html>

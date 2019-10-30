@@ -1,7 +1,9 @@
 <?php
 
 
-namespace App;
+namespace AllClass;
+
+use Model\Database;
 
 class Category
 {
